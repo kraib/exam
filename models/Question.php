@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "question".
  *
  * @property integer $id
- * @property integer $test_id
+ * @property integer $exam_id
  * @property string $question
  */
 class Question extends \yii\db\ActiveRecord
@@ -27,8 +27,8 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['test_id', 'question'], 'required'],
-            [['test_id'], 'integer'],
+            [['exam_id', 'question'], 'required'],
+            [['exam_id'], 'integer'],
             [['question'], 'string', 'max' => 250]
         ];
     }
@@ -40,17 +40,8 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'test_id' => 'Test ID',
+            'exam_id' => 'Exam ID',
             'question' => 'Question',
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return QuestionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new QuestionQuery(get_called_class());
     }
 }

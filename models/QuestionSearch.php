@@ -18,7 +18,7 @@ class QuestionSearch extends Question
     public function rules()
     {
         return [
-            [['id', 'test_id'], 'integer'],
+            [['id'], 'integer'],
             [['question'], 'safe'],
         ];
     }
