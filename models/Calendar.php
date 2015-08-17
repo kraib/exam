@@ -44,13 +44,4 @@ class Calendar extends \yii\db\ActiveRecord
             'test_id' => 'Test ID',
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return CalendarQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new CalendarQuery(get_called_class());
-    }
 }
