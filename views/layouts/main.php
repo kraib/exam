@@ -24,7 +24,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap container col-md-12">
+<div class="wrap">
     <?php
     NavBar::begin([
         'brandLabel' => 'My Company',
@@ -52,14 +52,9 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-
-                <?= Breadcrumbs::widget([
-                    'options'=> ['class'=>'breadcrumb pull-right'],
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                ]) ?>
-
-
-
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
         <?= $content ?>
     </div>
 </div>

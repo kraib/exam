@@ -12,13 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php  ?>
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'examiner_id')->textInput(['value'=> Yii::$app->user->id]) ?>
+    <?= $form->field($model, 'examiner_id')->textInput() ?>
 
     <?= $form->field($model, 'time')->textInput() ?>
 

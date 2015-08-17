@@ -7,15 +7,12 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\QuestionKeywords */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?php
-$question_id = Yii::$app->request->get('question');
-?>
 
 <div class="question-keywords-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'question_id')->textInput(['value'=>$question_id]) ?>
+    <?= $form->field($model, 'question_id')->textInput() ?>
 
     <?= $form->field($model, 'marks')->textInput() ?>
 

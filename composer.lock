@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bd726c516888eaa70bc5fbbcc4e274d5",
+    "hash": "919da9f1ad36d6921a4dff291dbdc27b",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -180,58 +180,6 @@
             }
         },
         {
-            "name": "bower-asset/twitter-bootstrap-wizard",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/VinceG/twitter-bootstrap-wizard.git",
-                "reference": "44a6d38bcdebc2cb40f5344dd60581e381387ea4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/VinceG/twitter-bootstrap-wizard/zipball/44a6d38bcdebc2cb40f5344dd60581e381387ea4",
-                "reference": "44a6d38bcdebc2cb40f5344dd60581e381387ea4",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/bootstrap": ">=3.3.0",
-                "bower-asset/jquery": ">=1.9.1"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "jquery.bootstrap.wizard.min.js"
-                ],
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "examples",
-                    "README.md",
-                    "*.txt",
-                    "*.html",
-                    "prettify.js",
-                    "prettify.css",
-                    "bower.json",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
-                ],
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "This twitter bootstrap plugin builds a wizard out of a formatter tabbable structure. It allows to build a wizard functionality using buttons to go through the different wizard steps and using events allows to hook into each step individually.",
-            "keywords": [
-                "bootstrap",
-                "twitter",
-                "wizard"
-            ],
-            "time": "2015-06-24 16:11:08"
-        },
-        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.4",
             "source": {
@@ -325,63 +273,6 @@
             "time": "2015-03-06 05:28:07"
         },
         {
-            "name": "chofoteddy/yii2-bootstrap-wizard",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Chofoteddy/yii2-bootstrap-wizard.git",
-                "reference": "03ca809eaae72f844f47b3e5d5b8586d06effea5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Chofoteddy/yii2-bootstrap-wizard/zipball/03ca809eaae72f844f47b3e5d5b8586d06effea5",
-                "reference": "03ca809eaae72f844f47b3e5d5b8586d06effea5",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/twitter-bootstrap-wizard": "*",
-                "php": ">=5.4.0",
-                "yiisoft/yii2-bootstrap": "*"
-            },
-            "require-dev": {
-                "yiisoft/yii2-apidoc": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "asset-installer-paths": {
-                    "bower-asset-library": "vendor/bower"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "chofoteddy\\wizard\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christopher",
-                    "email": "chofoteddy88@yahoo.com.mx"
-                },
-                {
-                    "name": "Faryshta",
-                    "email": "angeldelcaos@gmail.com"
-                }
-            ],
-            "description": "Wizard form based on twitter bootstrap plugin (@VinceG)",
-            "homepage": "https://github.com/Chofoteddy/yii2-bootstrap-wizard",
-            "keywords": [
-                "bootstrap",
-                "wizard",
-                "yii2",
-                "yii2-extension"
-            ],
-            "time": "2015-07-16 20:47:10"
-        },
-        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.6.0",
             "source": {
@@ -435,7 +326,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ikimea/Browser/zipball/f321c8e6aea829f9a7b85e357f77e78892ad8881",
+                "url": "https://api.github.com/repos/Ikimea/Browser/zipball/032b4a04ace39bd77e8ffc399f3ee63484890ae6",
                 "reference": "032b4a04ace39bd77e8ffc399f3ee63484890ae6",
                 "shasum": ""
             },

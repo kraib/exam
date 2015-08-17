@@ -23,8 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-
-        <?=Html::a('Add Keywords to Question',[ 'question-keywords/create', 'question'=>$model->id],['class'=>'btn btn-success'])  ?>
     </p>
 
     <?= DetailView::widget([

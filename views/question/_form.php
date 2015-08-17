@@ -7,16 +7,12 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Question */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?php
-$request = Yii::$app->request;
-$test_id = $request->get('test');
-?>
 
 <div class="question-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'test_id')->textInput(['value'=>$test_id]) ?>
+    <?= $form->field($model, 'test_id')->textInput() ?>
 
     <?= $form->field($model, 'question')->textInput(['maxlength' => true]) ?>
 

@@ -23,8 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-
-        <?=Html::a('Add Questions to Test',[ 'question/create', 'test'=>$model->id],['class'=>'btn btn-success'])  ?>
     </p>
 
     <?= DetailView::widget([
