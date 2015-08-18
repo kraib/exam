@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 18, 2015 at 07:27 PM
+-- Generation Time: Aug 18, 2015 at 07:37 PM
 -- Server version: 5.5.44-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.11
 
@@ -33,6 +33,12 @@ CREATE TABLE IF NOT EXISTS `calendar` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELATIONS FOR TABLE `calendar`:
+--   `test_id`
+--       `test` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +64,12 @@ CREATE TABLE IF NOT EXISTS `question` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELATIONS FOR TABLE `question`:
+--   `test_id`
+--       `test` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +83,12 @@ CREATE TABLE IF NOT EXISTS `question_keywords` (
   `marks` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- RELATIONS FOR TABLE `question_keywords`:
+--   `question_id`
+--       `question` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -89,6 +107,14 @@ CREATE TABLE IF NOT EXISTS `result` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELATIONS FOR TABLE `result`:
+--   `student_id`
+--       `user` -> `id`
+--   `test_id`
+--       `test` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +128,14 @@ CREATE TABLE IF NOT EXISTS `student_answer` (
   `answer` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- RELATIONS FOR TABLE `student_answer`:
+--   `question_id`
+--       `question` -> `id`
+--   `student_id`
+--       `user` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -118,6 +152,12 @@ CREATE TABLE IF NOT EXISTS `test` (
   `duration` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- RELATIONS FOR TABLE `test`:
+--   `examiner_id`
+--       `user` -> `id`
+--
 
 -- --------------------------------------------------------
 
