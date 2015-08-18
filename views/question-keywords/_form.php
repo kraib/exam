@@ -8,13 +8,18 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<?php
+$request = Yii::$app->request;
+$qn_id = $request->get('question');
+?>
+
 <div class="question-keywords-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'question_id')->textInput() ?>
+    <?= $form->field($model, 'question_id')->textInput(['value'=> $qn_id]) ?>
 
-    <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'keyword')->textInput(['maxlength' => true ] ) ?>
 
     <?= $form->field($model, 'marks')->textInput() ?>
 
