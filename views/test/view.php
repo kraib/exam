@@ -58,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
              $questions = new \app\models\Question();
 
             $test_questions =  $questions->find()->where(['test_id' =>$model->id])->all();
+            
             foreach ($test_questions as $qn ) {
 
 

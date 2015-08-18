@@ -19,6 +19,7 @@ class QuestionKeywordsSearch extends QuestionKeywords
     {
         return [
             [['id', 'question_id', 'marks'], 'integer'],
+            [['keyword'], 'safe'],
         ];
     }
 
@@ -59,6 +60,8 @@ class QuestionKeywordsSearch extends QuestionKeywords
             'question_id' => $this->question_id,
             'marks' => $this->marks,
         ]);
+
+        $query->andFilterWhere(['like', 'keyword', $this->keyword]);
 
         return $dataProvider;
     }

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $question_id
+ * @property string $keyword
  * @property integer $marks
  */
 class QuestionKeywords extends \yii\db\ActiveRecord
@@ -27,8 +28,9 @@ class QuestionKeywords extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['question_id', 'marks'], 'required'],
-            [['question_id', 'marks'], 'integer']
+            [['question_id', 'keyword', 'marks'], 'required'],
+            [['question_id', 'marks'], 'integer'],
+            [['keyword'], 'string', 'max' => 250]
         ];
     }
 
@@ -40,6 +42,7 @@ class QuestionKeywords extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'question_id' => 'Question ID',
+            'keyword' => 'Keyword',
             'marks' => 'Marks',
         ];
     }

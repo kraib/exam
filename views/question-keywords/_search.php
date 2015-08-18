@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'question_id') ?>
 
+    <?= $form->field($model, 'keyword') ?>
+
     <?= $form->field($model, 'marks') ?>
 
     <div class="form-group">
