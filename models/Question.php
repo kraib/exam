@@ -44,13 +44,4 @@ class Question extends \yii\db\ActiveRecord
             'question' => 'Question',
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return QuestionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new QuestionQuery(get_called_class());
-    }
 }

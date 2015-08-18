@@ -3,18 +3,22 @@
 namespace app\models;
 
 use Yii;
-use yii\base\NotSupportedException;
-use yii\db\ActiveRecord;
-use yii\helpers\Security;
 use yii\web\IdentityInterface;
+
 /**
- * This is the model class for table "tbl_user".
+ * This is the model class for table "user".
  *
- * @property string $userid
+ * @property integer $id
  * @property string $username
  * @property string $password
+ * @property string $auth_key
+ * @property string $access_token
+ * @property string $role
+ * @property string $first_name
+ * @property string $last_name
+ * @property integer $status
  */
-class User extends \yii\db\ActiveRecord  implements IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * @inheritdoc
@@ -30,8 +34,11 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
-            [['username', 'password'], 'string', 'max' => 100]
+            [['username', 'password','role', 'first_name', 'last_name'], 'required'],
+            [['password', 'auth_key', 'access_token'], 'string'],
+            [['status'], 'integer'],
+            [['username', 'first_name', 'last_name'], 'string', 'max' => 250],
+            [['role'], 'string', 'max' => 50]
         ];
     }
 
@@ -41,12 +48,18 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'userid' => 'Userid',
+            'id' => 'ID',
             'username' => 'Username',
             'password' => 'Password',
-            'role' => 'Role'
+            'auth_key' => 'Auth Key',
+            'access_token' => 'Access Token',
+            'role' => 'Role',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'status' => 'Status',
         ];
     }
+
     /** INCLUDE USER LOGIN VALIDATION FUNCTIONS**/
     /**
      * @inheritdoc
@@ -172,5 +185,4 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
         $this->password_reset_token = null;
     }
     /** EXTENSION MOVIE **/
-
 }

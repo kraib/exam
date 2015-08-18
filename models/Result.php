@@ -52,13 +52,4 @@ class Result extends \yii\db\ActiveRecord
             'duration_used' => 'Duration Used',
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return ResultQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new ResultQuery(get_called_class());
-    }
 }

@@ -46,13 +46,4 @@ class StudentAnswer extends \yii\db\ActiveRecord
             'answer' => 'Answer',
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return StudentAnswerQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new StudentAnswerQuery(get_called_class());
-    }
 }
