@@ -27,16 +27,50 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=Html::a('Add Questions to Test',[ 'question/create', 'test'=>$model->id],['class'=>'btn btn-success'])  ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'subject',
-            'examiner_id',
-            'time',
-            'duration',
-        ],
-    ]) ?>
+    <div class="row">
+        <div class="col-md-5">
+            <?php
+            //return examiner link
+            $examiner = new \app\models\User();
+            $username = $examiner->findIdentity($model->examiner_id)->username;
+            $examiner_link = Html::a($username,['user/view', 'id'=>$model->id]);
+
+
+            ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'name',
+                    'subject',
+                    [                      // the owner name of the model
+                        'label' => 'Examiner',
+                        'value' => $examiner_link,
+                        'format' => 'html'
+                    ],
+                    'time',
+                    'duration',
+                ],
+            ]) ?>
+        </div>
+        <div class="col-md-7">
+            <h3>Test Questions</h3>
+            <?php
+             $questions = new \app\models\Question();
+
+            $test_questions =  $questions->find()->where(['test_id' =>$model->id])->all();
+            foreach ($test_questions as $qn ) {
+
+
+
+            ?>
+
+            <h4><?php echo $qn->question; ?></h4>
+
+            <?php } ?>
+
+        </div>
+
+    </div>
+
 
 </div>

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "question".
  *
  * @property integer $id
- * @property integer $exam_id
+ * @property integer $test_id
  * @property string $question
  */
 class Question extends \yii\db\ActiveRecord
@@ -27,8 +27,8 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['exam_id', 'question'], 'required'],
-            [['exam_id'], 'integer'],
+            [['test_id', 'question'], 'required'],
+            [['test_id'], 'integer'],
             [['question'], 'string', 'max' => 250]
         ];
     }
@@ -40,7 +40,7 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'exam_id' => 'Exam ID',
+            'test_id' => 'Test ID',
             'question' => 'Question',
         ];
     }
