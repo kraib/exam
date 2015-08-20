@@ -89,3 +89,16 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.btn{
+    border-radius: 0;
+}
+
+.qn-box{
+    border: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.keyword-container{
+    border-left: 1px solid #ddd ;
+}
