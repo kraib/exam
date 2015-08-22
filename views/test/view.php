@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Test */
@@ -57,7 +60,7 @@ $delete_icon = '<span class="glyphicon glyphicon-trash"></span>';
         <div class="col-md-9 qn-box">
             <h3>
                 Test Questions
-                <?=Html::a('Add',[ 'question/create', 'test'=>$model->id],['class'=>'btn btn-success'])  ?>
+                <?=Html::a('Add',[ 'question/create', 'test'=>$model->id],['class'=>'btn  btn-success','data-toggle'=>'modal','data-target' => '#modal_question'])  ?>
             </h3>
             <div class="row">
                 <div class="col-md-1">
@@ -158,4 +161,27 @@ $delete_icon = '<span class="glyphicon glyphicon-trash"></span>';
     </div>
 
 
+
 </div>
+<?php
+Modal::begin([
+    'id' => 'modal_question',
+    'header' => '<h4>Add Question</h4>',
+    'options'=> ['class'=>'']
+]);?>
+
+<?php $question = new \app\models\Question(); ?>
+    <?php $form =  ActiveForm::begin(
+        ['action'=> Url::to(['question/create', 'test' => $model->id ]) , 'id'=>'question-create']
+    ); ?>
+
+<?= $form->field($question, 'test_id')->hiddenInput(['value'=>$model->id])->label(false); ?>
+
+<?= $form->field($question, 'question')->textInput(['maxlength' => true]) ?>
+<div class="form-group">
+    <?= Html::submitButton('Create', ['class' => 'btn btn-success']); ?>
+</div>
+    <?php ActiveForm::end() ?>
+
+<?php  Modal::end();  ?>
+
