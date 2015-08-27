@@ -21,7 +21,8 @@
         "webvimark/module-user-management": "*",
         "thyseus/yii-user-management": "dev-master",
         "yiisoft/yii2-jui": "^2.0@dev",
-        "kartik-v/yii2-widget-datetimepicker": "*"
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "mdmsoft/yii2-admin": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
