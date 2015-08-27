@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
+echo (Yii::$app->user->can('createexams'));
 ?>
 <div class="site-index">
 

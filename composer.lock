@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "919da9f1ad36d6921a4dff291dbdc27b",
+    "hash": "b13bd9916cbf7d730fdead2136ac6786",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -326,7 +326,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ikimea/Browser/zipball/032b4a04ace39bd77e8ffc399f3ee63484890ae6",
+                "url": "https://api.github.com/repos/Ikimea/Browser/zipball/f321c8e6aea829f9a7b85e357f77e78892ad8881",
                 "reference": "032b4a04ace39bd77e8ffc399f3ee63484890ae6",
                 "shasum": ""
             },
@@ -363,6 +363,57 @@
                 "browser"
             ],
             "time": "2014-09-25 12:43:30"
+        },
+        {
+            "name": "mdmsoft/yii2-admin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mdmsoft/yii2-admin.git",
+                "reference": "835875b0cc0bef1f12998c4c713494947b45cfcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mdmsoft/yii2-admin/zipball/835875b0cc0bef1f12998c4c713494947b45cfcb",
+                "reference": "835875b0cc0bef1f12998c4c713494947b45cfcb",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.4"
+            },
+            "suggest": {
+                "yiisoft/yii2-bootstrap": "Used when using layout 'left-menu', 'right-menu' or 'top-menu'"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.master": "1.0.x-dev",
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "mdm\\admin\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Misbahul Munir",
+                    "email": "misbahuldmunir@gmail.com"
+                }
+            ],
+            "description": "RBAC Auth manager for Yii2 ",
+            "keywords": [
+                "admin",
+                "auth",
+                "rbac",
+                "yii"
+            ],
+            "time": "2015-08-05 03:43:41"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -492,7 +543,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webvimark/components/zipball/63c6ec6b2e825a776de5677f429fc7368f143eed",
+                "url": "https://api.github.com/repos/webvimark/components/zipball/782cb6ec7a4dc1a27389504cdfe9e15d0c47f04d",
                 "reference": "3f27eb2f4272243f232dbd56e46d6011c26ef93f",
                 "shasum": ""
             },
@@ -544,7 +595,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webvimark/grid-bulk-actions/zipball/8ef015d58ecace0338c3c8f26d4b0c920fcef633",
+                "url": "https://api.github.com/repos/webvimark/grid-bulk-actions/zipball/cbad680d89dc4192dac686fd7f7d6298d5debae2",
                 "reference": "8ef015d58ecace0338c3c8f26d4b0c920fcef633",
                 "shasum": ""
             },
@@ -640,7 +691,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webvimark/user-management/zipball/1a644a21b2f10823fec7e103dc10dd2fd9fec46e",
+                "url": "https://api.github.com/repos/webvimark/user-management/zipball/bced9d76f1b787d5416b71d8a18dfd24c0e4620a",
                 "reference": "1a644a21b2f10823fec7e103dc10dd2fd9fec46e",
                 "shasum": ""
             },
@@ -1299,7 +1350,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "thyseus/yii-user-management": 20
+        "thyseus/yii-user-management": 20,
+        "mdmsoft/yii2-admin": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
