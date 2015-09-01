@@ -10,7 +10,13 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+//add ajax js
+$this->registerJs('var keywords_url = "'.\yii\helpers\Url::to(['question-keywords/key'],true).'";', $this::POS_HEAD, 'my-options');
+$this->registerJsFile('@web/js/test.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
+
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">

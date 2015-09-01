@@ -6,8 +6,10 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Test */
+
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['index']];
@@ -30,7 +32,7 @@ $delete_icon = '<span class="glyphicon glyphicon-trash"></span>';
         ]) ?>
     </h1>
 
-    
+
 
     <div class="row">
         <div class="col-md-3 test-details">
@@ -164,13 +166,17 @@ $delete_icon = '<span class="glyphicon glyphicon-trash"></span>';
 
 
 </div>
+
 <?php
+
 Modal::begin([
     'id' => 'modal_question',
     'header' => '<h4>Add Question</h4>',
     'options'=> ['class'=>'']
 ]);?>
+<div class="response">
 
+</div>
 <?php $question = new \app\models\Question(); ?>
     <?php $form =  ActiveForm::begin(
         ['action'=> Url::to(['question/create', 'test' => $model->id ]) , 'id'=>'question-create']
@@ -184,5 +190,8 @@ Modal::begin([
 </div>
     <?php ActiveForm::end() ?>
 
-<?php  Modal::end();  ?>
+<?php  Modal::end();
+
+
+?>
 

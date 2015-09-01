@@ -63,6 +63,11 @@ class QuestionController extends Controller
         $model = new Question();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //return json
+            if(Yii::$app->request->isAjax){
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return $model->toArray();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

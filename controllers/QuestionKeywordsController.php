@@ -63,6 +63,11 @@ class QuestionKeywordsController extends Controller
         $model = new QuestionKeywords();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //return json
+            if(Yii::$app->request->isAjax){
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return $model->toArray();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -101,6 +106,25 @@ class QuestionKeywordsController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Returns form that contains add question keywords to questions
+
+     * @param integer $id
+     * @return mixed
+     */
+
+    public function actionKey($id)
+    {
+        $model = new QuestionKeywords();
+
+        //pass question id to Question keywords view
+        $this->view->params['question_id'] = $id;
+        return $this->render('ajaxadd',[
+            'model' => $model,
+        ]);
+
     }
 
     /**
