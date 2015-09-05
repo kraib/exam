@@ -1496,7 +1496,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "thyseus/yii-user-management": 20,
-        "yiisoft/yii2-jui": 20
+        "yiisoft/yii2-jui": 20,
         "mdmsoft/yii2-admin": 20
     },
     "prefer-stable": false,
