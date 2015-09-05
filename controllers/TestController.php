@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\StudentAnswer;
 use Yii;
 use app\models\Test;
 use app\models\TestSearch;
+use yii\base\Model;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,6 +54,55 @@ class TestController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+
+    /**
+     * Displays a single Test model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionSit($id)
+    {
+        $test = $this->findModel($id);
+        $questions = new \app\models\Question();
+        $test_questions =  $questions->find()->where(['test_id' =>$test->id])->all();
+        $answers = [];
+        for($i = 0; $i < count($test_questions); $i++) {
+            $answers[] = new StudentAnswer();
+        }
+
+
+
+
+    if (Model::loadMultiple($answers, Yii::$app->request->post()) &&  Model::validateMultiple($answers)) {
+        // valid data received in $model
+
+        // do something meaningful here about $model ...
+
+        foreach ($answers as $answer) {
+            $answer->save(false);
+        }
+        //return $this->redirect('index');
+
+
+            return $this->render('confirm', [
+                'test' => $this->findModel($id),
+                'test_questions' =>  $test_questions,
+                'answers' => $answers,
+            ]);
+
+        } else {
+
+            // either the page is initially displayed or there is some validation error
+            return $this->render('sit', [
+                'test' => $this->findModel($id),
+                'test_questions' =>  $test_questions,
+                'answers' => $answers,
+            ]);
+        }
+
+
+    }
+
 
     /**
      * Creates a new Test model.
@@ -102,6 +153,24 @@ class TestController extends Controller
 
         return $this->redirect(['index']);
     }
+
+    public function actionHandIn($id)
+    {
+
+
+            $searchModel = new TestSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+
+
+
+    }
+
+
 
     /**
      * Finds the Test model based on its primary key value.

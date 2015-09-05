@@ -51,4 +51,12 @@ class Test extends \yii\db\ActiveRecord
             'duration' => 'Duration',
         ];
     }
+
+    /**
+     *
+     */
+    public function getFullTest(){
+        //$this->
+
+    }
 }
