@@ -104,7 +104,9 @@ class QuestionKeywordsController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        if(Yii::$app->request->isAjax){
+            return 'success';
+        }
         return $this->redirect(['index']);
     }
 
@@ -121,7 +123,7 @@ class QuestionKeywordsController extends Controller
 
         //pass question id to Question keywords view
         $this->view->params['question_id'] = $id;
-        return $this->render('ajaxadd',[
+        return $this->renderAjax('ajaxadd',[
             'model' => $model,
         ]);
 

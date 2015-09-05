@@ -170,6 +170,15 @@ class TestController extends Controller
 
     }
 
+    public function actionQuestionsFetch($id){
+        if(Yii::$app->request->isAjax){
+            $model = $this->findModel($id);
+            return $this->renderAjax('qnkey',[
+                'model' => $model,
+            ]);
+        }
+    }
+
 
 
     /**
