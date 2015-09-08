@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\Question;
 use app\models\StudentAnswer;
+use app\models\StudentTest;
 use Yii;
 use app\models\Test;
 use app\models\TestSearch;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -63,9 +66,34 @@ class TestController extends Controller
     public function actionSit($id)
     {
         $test = $this->findModel($id);
-        $questions = new \app\models\Question();
+        $questions = new Question();
         $test_questions =  $questions->find()->where(['test_id' =>$test->id])->all();
+        $studentTest  = new StudentTest();
+        $has_taken_test = StudentTest::find()->where([
+            'student_id' => Yii::$app->user->id,
+            'test_id' => $test->id
+        ])->exists();
+        echo $has_taken_test;
+
+        if($has_taken_test){
+
+            $testModel = new Test();
+            $tests = $testModel->find();
+            $dataProvider = new ActiveDataProvider([
+                'query' => $tests,
+                'pagination' => [
+                    'pageSize' => 10,
+                ]
+            ]);
+
+            return $this->render('student-home', [
+                'tests' => $tests,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
         $answers = [];
+
+
         for($i = 0; $i < count($test_questions); $i++) {
             $answers[] = new StudentAnswer();
         }
@@ -78,18 +106,29 @@ class TestController extends Controller
 
         // do something meaningful here about $model ...
 
+        $studentTest->student_id = Yii::$app->user->id;
+        $studentTest->test_id = $test->id;
+        $studentTest->taken = 1;
+
         foreach ($answers as $answer) {
             $answer->save(false);
+
         }
-        //return $this->redirect('index');
+        $studentTest->save();
 
+        $testModel = new Test();
+        $tests = $testModel->find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $tests,
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
 
-            return $this->render('confirm', [
-                'test' => $this->findModel($id),
-                'test_questions' =>  $test_questions,
-                'answers' => $answers,
-            ]);
-
+        return $this->render('student-home', [
+            'tests' => $tests,
+            'dataProvider' => $dataProvider,
+        ]);
         } else {
 
             // either the page is initially displayed or there is some validation error
@@ -154,21 +193,6 @@ class TestController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionHandIn($id)
-    {
-
-
-            $searchModel = new TestSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-
-
-
-    }
 
     public function actionQuestionsFetch($id){
         if(Yii::$app->request->isAjax){
@@ -180,6 +204,43 @@ class TestController extends Controller
     }
 
 
+
+    /**
+     * Lists all Tests for a student.
+     * @return mixed
+     */
+    public function actionStudentHome()
+    {
+        $testModel = new Test();
+        $tests = $testModel->find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $tests,
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
+
+        return $this->render('student-home', [
+            'tests' => $tests,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function goStudentHome(){
+        $testModel = new Test();
+        $tests = $testModel->find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $tests,
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
+
+        return $this->render('student-home', [
+            'tests' => $tests,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Finds the Test model based on its primary key value.
@@ -196,4 +257,7 @@ class TestController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
 }
