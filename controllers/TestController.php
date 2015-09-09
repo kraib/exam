@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Question;
 use app\models\StudentAnswer;
 use app\models\StudentTest;
+use DateTime;
 use Yii;
 use app\models\Test;
 use app\models\TestSearch;
@@ -73,23 +74,15 @@ class TestController extends Controller
             'student_id' => Yii::$app->user->id,
             'test_id' => $test->id
         ])->exists();
-        echo $has_taken_test;
+        //echo $has_taken_test;
 
         if($has_taken_test){
 
-            $testModel = new Test();
-            $tests = $testModel->find();
-            $dataProvider = new ActiveDataProvider([
-                'query' => $tests,
-                'pagination' => [
-                    'pageSize' => 10,
-                ]
-            ]);
-
             return $this->render('student-home', [
-                'tests' => $tests,
-                'dataProvider' => $dataProvider,
-            ]);
+                'taken_tests' => $this->getTakenTests(),
+                'available_tests' => $this->getAvailableTests(),
+
+            ]);;
         }
         $answers = [];
 
@@ -116,18 +109,10 @@ class TestController extends Controller
         }
         $studentTest->save();
 
-        $testModel = new Test();
-        $tests = $testModel->find();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $tests,
-            'pagination' => [
-                'pageSize' => 10,
-            ]
-        ]);
-
         return $this->render('student-home', [
-            'tests' => $tests,
-            'dataProvider' => $dataProvider,
+            'taken_tests' => $this->getTakenTests(),
+            'available_tests' => $this->getAvailableTests(),
+
         ]);
         } else {
 
@@ -203,16 +188,18 @@ class TestController extends Controller
         }
     }
 
-
-
-    /**
-     * Lists all Tests for a student.
-     * @return mixed
-     */
-    public function actionStudentHome()
-    {
+    public function getTakenTests(){
+        $tests_taken = StudentTest::find()->where(['student_id' => Yii::$app->user->id])->all();
+        $ids_of_tests_taken =[];
+        foreach ($tests_taken as $t){
+            $ids_of_tests_taken[] = $t->test_id;
+        }
+        var_dump($ids_of_tests_taken);
         $testModel = new Test();
-        $tests = $testModel->find();
+        $tests = Test::find()->
+            where([
+                'id' => $ids_of_tests_taken,
+            ]);
         $dataProvider = new ActiveDataProvider([
             'query' => $tests,
             'pagination' => [
@@ -220,15 +207,22 @@ class TestController extends Controller
             ]
         ]);
 
-        return $this->render('student-home', [
-            'tests' => $tests,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $dataProvider;
     }
 
-    public function goStudentHome(){
-        $testModel = new Test();
-        $tests = $testModel->find();
+    public function getAvailableTests(){
+        $tests_taken = StudentTest::find()->where(['student_id' => Yii::$app->user->id])->all();
+        $ids_of_tests_taken =[];
+        foreach ($tests_taken as $t){
+            $ids_of_tests_taken[] = $t->test_id;
+        }
+        $time = new DateTime();
+        $tests = Test::find()->
+            andWhere("time<=NOW()")->
+            andWhere("NOW()<= DATE_ADD(time, INTERVAL + duration MINUTE)");
+        var_dump($tests->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
+
+        //andWhere("time+duration*60<NOW()");
         $dataProvider = new ActiveDataProvider([
             'query' => $tests,
             'pagination' => [
@@ -236,10 +230,7 @@ class TestController extends Controller
             ]
         ]);
 
-        return $this->render('student-home', [
-            'tests' => $tests,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $dataProvider;
     }
 
     /**

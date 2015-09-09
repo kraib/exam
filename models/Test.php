@@ -65,4 +65,9 @@ class Test extends ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'examiner_id']);
     }
+
+    public function getstudent_test()
+    {
+        return $this->hasMany(StudentTest::className(), ['student_id' => 'id']);
+    }
 }

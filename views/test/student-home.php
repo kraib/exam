@@ -13,14 +13,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="test-index">
 
     <h1>My <?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo ""//"<p>". var_dump($dataProvider)."</p>"; // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $taken_tests,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            'id',
             'name',
             'subject',
             [
@@ -33,4 +33,24 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <h2>Available <?= Html::encode($this->title) ?></h2>
+    <?php echo ""//"<p>". var_dump($dataProvider)."</p>"; // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
+    <?= GridView::widget([
+        'dataProvider' => $available_tests,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'id',
+            'name',
+            'subject',
+            [
+                'attribute' => 'examiner',
+                'value' => 'examiner.username'
+            ],
+            'time',
+            'duration',
+
+        ],
+    ]); ?>
 </div>
