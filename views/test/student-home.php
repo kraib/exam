@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'time',
             'duration',
 
+
         ],
     ]); ?>
 
@@ -50,6 +51,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'time',
             'duration',
+            [
+                //'attribute' => 'Take Test',
+                //'content' => Html::a('Take Test', ['sit'], ['class' => 'btn btn-success']),
+                'label'=>'Take Test',
+                'format'=>'raw',
+                'value' => function ($data) {
+
+                    return  Html::a('Take Test', ['sit','id' => $data->id], ['class' => 'btn btn-info']);
+                },
+
+            ],
 
         ],
     ]); ?>

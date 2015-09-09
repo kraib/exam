@@ -82,7 +82,7 @@ class TestController extends Controller
                 'taken_tests' => $this->getTakenTests(),
                 'available_tests' => $this->getAvailableTests(),
 
-            ]);;
+            ]);
         }
         $answers = [];
 
