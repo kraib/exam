@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Test;
 use Yii;
 use app\models\Result;
 use app\models\ResultSearch;
@@ -52,6 +53,15 @@ class ResultController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+
+    public function actionStudentView($test)
+    {
+        return $this->render('student-view', [
+            'model' => Result::findOne(['test_id'=> $test, 'student_id' => Yii::$app->user->id]),
+            'test' => Test::findOne($test),
+        ]);
+    }
+
 
     /**
      * Creates a new Result model.

@@ -52,4 +52,9 @@ class Result extends \yii\db\ActiveRecord
             'duration_used' => 'Duration Used',
         ];
     }
+
+    public function getTest()
+    {
+        return $this->hasOne(Test::className(), ['id' => 'test_id']);
+    }
 }

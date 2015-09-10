@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $taken_tests,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'name',
             'subject',
             [
@@ -29,6 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'time',
             'duration',
+            [
+                'label'=>'View Results',
+                'format'=>'raw',
+                'value' => function ($data) {
+                    return  Html::a('View Results', ['result/student-view','test' => $data->id], ['class' => 'btn btn-success']);
+                },
+
+            ]
 
 
         ],
