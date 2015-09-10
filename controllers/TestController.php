@@ -174,6 +174,12 @@ class TestController extends Controller
 
     }
 
+    public function actionExaminerHome(){
+        return $this->render('examiner-home', [
+            'examiners_tests' => $this->getExaminersTests(),
+        ]);
+
+    }
 
     /**
      * Creates a new Test model.
@@ -276,6 +282,20 @@ class TestController extends Controller
         return $dataProvider;
     }
 
+    public function getExaminersTests(){
+        $tests = Test::find()->
+            where([
+                'examiner_id' => Yii::$app->user->id,
+            ]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $tests,
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
+
+        return $dataProvider;
+    }
 
     private function grade_question($question_keywords, $student_answer)
     {

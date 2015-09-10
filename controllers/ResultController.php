@@ -6,6 +6,7 @@ use app\models\Test;
 use Yii;
 use app\models\Result;
 use app\models\ResultSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -59,6 +60,24 @@ class ResultController extends Controller
         return $this->render('student-view', [
             'model' => Result::findOne(['test_id'=> $test, 'student_id' => Yii::$app->user->id]),
             'test' => Test::findOne($test),
+        ]);
+    }
+
+    public function actionExaminerList($test)
+    {
+echo $test;
+        $tests = Result::find()->where(['test_id'=> $test]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $tests,
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
+
+
+        return $this->render('examiner-list', [
+            'results' => $dataProvider,
         ]);
     }
 
