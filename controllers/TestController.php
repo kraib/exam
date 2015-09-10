@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Question;
+use app\models\QuestionKeywords;
+use app\models\Result;
 use app\models\StudentAnswer;
 use app\models\StudentTest;
 use DateTime;
@@ -78,11 +80,7 @@ class TestController extends Controller
 
         if($has_taken_test){
 
-            return $this->render('student-home', [
-                'taken_tests' => $this->getTakenTests(),
-                'available_tests' => $this->getAvailableTests(),
-
-            ]);
+            return $this->redirect(Yii::$app->urlManager->createUrl("test/student-home"));
         }
         $answers = [];
 
@@ -103,17 +101,33 @@ class TestController extends Controller
         $studentTest->test_id = $test->id;
         $studentTest->taken = 1;
 
+        $total_score =0;
+
         foreach ($answers as $answer) {
             $answer->save(false);
+            $keywords = QuestionKeywords::find()->andWhere(['question_id'=> $answer->question_id])->all();
+            //var_dump($keywords->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
+            //var_dump($keywords[0]->keyword);
+            $kw = array();
+            foreach($keywords as $keyword){
+                $kw[$keyword->keyword] = $keyword->marks;
+            }
+
+            $total_score +=  $this->grade_question($kw, $answer->answer);
 
         }
         $studentTest->save();
+        $result= new Result();
+        $result->test_id = $test->id;
+        $result->student_id = Yii::$app->user->id;
+        $result->total_score = $total_score;
+        $result->score_percentage = 0;
+        $result->duration_used = 0;
+        $result->save();
 
-        return $this->render('student-home', [
-            'taken_tests' => $this->getTakenTests(),
-            'available_tests' => $this->getAvailableTests(),
 
-        ]);
+
+        return $this->redirect(Yii::$app->urlManager->createUrl("test/student-home"));
         } else {
 
             // either the page is initially displayed or there is some validation error
@@ -124,6 +138,15 @@ class TestController extends Controller
             ]);
         }
 
+
+    }
+
+    public function actionStudentHome(){
+        return $this->render('student-home', [
+            'taken_tests' => $this->getTakenTests(),
+            'available_tests' => $this->getAvailableTests(),
+
+        ]);
 
     }
 
@@ -194,8 +217,6 @@ class TestController extends Controller
         foreach ($tests_taken as $t){
             $ids_of_tests_taken[] = $t->test_id;
         }
-        var_dump($ids_of_tests_taken);
-        $testModel = new Test();
         $tests = Test::find()->
             where([
                 'id' => $ids_of_tests_taken,
@@ -216,13 +237,11 @@ class TestController extends Controller
         foreach ($tests_taken as $t){
             $ids_of_tests_taken[] = $t->test_id;
         }
-        $time = new DateTime();
         $tests = Test::find()->
             andWhere("time<=NOW()")->
-            andWhere("NOW()<= DATE_ADD(time, INTERVAL + duration MINUTE)");
-        var_dump($tests->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
+            andWhere("NOW()<= DATE_ADD(time, INTERVAL + duration MINUTE)")->
+            andWhere(['not in', 'id', $ids_of_tests_taken]);
 
-        //andWhere("time+duration*60<NOW()");
         $dataProvider = new ActiveDataProvider([
             'query' => $tests,
             'pagination' => [
@@ -232,6 +251,22 @@ class TestController extends Controller
 
         return $dataProvider;
     }
+
+
+    private function grade_question($question_keywords, $student_answer)
+    {
+
+        $score = 0;
+        foreach($question_keywords as $keyw => $mark){
+
+            if(preg_match("/(".$keyw.")/i", $student_answer, $match)){
+                $score+=$mark;
+            }
+
+        }
+        return $score;
+    }
+
 
     /**
      * Finds the Test model based on its primary key value.
@@ -248,6 +283,7 @@ class TestController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 
 
 
