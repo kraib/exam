@@ -101,14 +101,38 @@ class TestController extends Controller
         $studentTest->test_id = $test->id;
         $studentTest->taken = 1;
 
-        $total_score =0;
 
+        /*
+         * Get ids of all questions in this test
+         *
+         */
+        $test_questions_ids = array();
+
+        foreach($test_questions as $tq){
+            $test_questions_ids[]= $tq->id;
+        }
+        $keyword_points = QuestionKeywords::find()->where(['question_id' => $test_questions_ids])->all();
+
+
+        /*
+         * Get total marks achievable for this test
+         *
+         */
+        $total_test_marks= 0;
+        foreach($keyword_points as $keyword_point){
+            $total_test_marks+=$keyword_point->marks;
+        }
+        //echo $total_test_marks;
+
+        /*
+         * Add all answers to the database and grade them
+         */
+        $total_score =0;
         foreach ($answers as $answer) {
             $answer->save(false);
             $keywords = QuestionKeywords::find()->andWhere(['question_id'=> $answer->question_id])->all();
-            //var_dump($keywords->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
-            //var_dump($keywords[0]->keyword);
             $kw = array();
+
             foreach($keywords as $keyword){
                 $kw[$keyword->keyword] = $keyword->marks;
             }
@@ -121,7 +145,7 @@ class TestController extends Controller
         $result->test_id = $test->id;
         $result->student_id = Yii::$app->user->id;
         $result->total_score = $total_score;
-        $result->score_percentage = 0;
+        $result->score_percentage = ($total_score/$total_test_marks)*100;
         $result->duration_used = 0;
         $result->save();
 
