@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
-
+$this->registerJsFile('@web/js/test.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 /* @var $this yii\web\View */
 /* @var $model app\models\Test */
 

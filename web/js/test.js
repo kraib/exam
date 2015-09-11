@@ -1,10 +1,3 @@
-$(document).ready(function(){
-    getTestQuestionView();
-    var timer = setInterval(function () {
-        getTestQuestionView();
-    }, 1000000);
-
-});
 
 
 $('#test-qns').on('click', '.keyword-delete', function(event){
@@ -87,3 +80,9 @@ function getTestQuestionView(){
 
         });
 }
+$(document).ready(function(){
+    getTestQuestionView();
+    var timer = setInterval(function () {
+        getTestQuestionView();
+    }, 1000000);
+});

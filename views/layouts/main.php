@@ -14,7 +14,7 @@ AppAsset::register($this);
 //add ajax js
 $this->registerJs('var keywords_url = "'.\yii\helpers\Url::to(['question-keywords/key'],true).'";', $this::POS_HEAD, 'my-options');
 $this->registerJs('var tests_qns_url = "'.\yii\helpers\Url::to(['test/questions-fetch'],true).'";', $this::POS_HEAD, 'my-option');
-$this->registerJsFile('@web/js/test.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+
 ?>
 
 

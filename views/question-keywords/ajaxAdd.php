@@ -43,8 +43,7 @@ $question_id = $this->params['question_id'];
                <?php $form =  ActiveForm::begin(
                    ['action'=> Url::to(['question-keywords/create', 'question' => $question_id ]) , 'id'=>'question-key-create']
                ); ?>
-
-               <?= $form->field($model, 'question_id')->textInput(['value'=> $question_id]) ?>
+               <?= $form->field($model, 'question_id')->hiddenInput(['value'=> $question_id])->label(false) ?>
 
                <?= $form->field($model, 'keyword')->textInput(['maxlength' => true ] ) ?>
 
