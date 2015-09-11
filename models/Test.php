@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "test".
@@ -14,7 +15,7 @@ use Yii;
  * @property string $time
  * @property integer $duration
  */
-class Test extends \yii\db\ActiveRecord
+class Test extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -58,5 +59,15 @@ class Test extends \yii\db\ActiveRecord
     public function getFullTest(){
         //$this->
 
+    }
+
+    public function getExaminer()
+    {
+        return $this->hasOne(User::className(), ['id' => 'examiner_id']);
+    }
+
+    public function getstudent_test()
+    {
+        return $this->hasMany(StudentTest::className(), ['student_id' => 'id']);
     }
 }
