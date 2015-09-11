@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
     getTestQuestionView();
     var timer = setInterval(function () {
@@ -5,7 +6,7 @@ $(document).ready(function(){
     }, 1000000);
 
 });
-
+*/
 
 $('#test-qns').on('click', '.keyword-delete', function(event){
 
