@@ -145,7 +145,14 @@ class TestController extends Controller
         $result->test_id = $test->id;
         $result->student_id = Yii::$app->user->id;
         $result->total_score = $total_score;
-        $result->score_percentage = ($total_score/$total_test_marks)*100;
+        if ($total_test_marks != 0)
+        {
+            $result->score_percentage = ($total_score/$total_test_marks)*100;
+        }
+        else
+        {
+            $result->score_percentage = 0;
+        }
         $result->duration_used = 0;
         $result->save();
 

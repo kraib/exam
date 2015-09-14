@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             $i = 0;
-            echo count($answers);
+
             foreach ($answers as $index => $answer) {
-                echo $i;
+
                 echo $form->field($answer, "[$index]answer")->textInput()->label($test_questions[$i]->question);
                 echo $form->field($answer, "[$index]student_id")->hiddenInput(['value'=>Yii::$app->user->id])->label(false);
                 echo $form->field($answer, "[$index]question_id")->hiddenInput(['value'=>$test_questions[$i]->id])->label(false);
