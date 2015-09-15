@@ -123,7 +123,7 @@ class QuestionKeywordsController extends Controller
 
         //pass question id to Question keywords view
         $this->view->params['question_id'] = $id;
-        return $this->renderAjax('ajaxadd',[
+        return $this->renderAjax('ajaxAdd',[
             'model' => $model,
         ]);
 
