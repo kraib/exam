@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Result */
 
 $this->title = "Test: ".$test->name;
-$this->params['breadcrumbs'][] = ['label' => 'Results', 'url' => ['index']];
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="result-view">
@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'total_score',
+
             'score_percentage',
             'comments:ntext',
-            'duration_used',
+
         ],
     ]) ?>
 

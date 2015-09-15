@@ -7,14 +7,16 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\TestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tests';
+$this->title = 'Test Reports';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="test-index">
 
     <h1>My <?= Html::encode($this->title) ?></h1>
     <?php echo ""//"<p>". var_dump($dataProvider)."</p>"; // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <p class="pull-right">
+        <?= Html::a('Create Test', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?= GridView::widget([
         'dataProvider' => $examiners_tests,
@@ -24,6 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'subject',
             'time',
             'duration',
+            [
+                'label'=>'Edit',
+                'format'=>'raw',
+                'value' => function ($data) {
+                    return  Html::a('Edit Test Questions', ['test/view','id' => $data->id], ['class' => 'btn btn-danger']);
+                },
+
+            ]
+            ,
             [
                 'label'=>'View Results',
                 'format'=>'raw',

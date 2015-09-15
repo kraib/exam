@@ -21,10 +21,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-               'attribute' => 'student',
-                'value' => 'student.username',
+               'attribute' => 'First Name',
+                'value' => 'student.first_name',
             ],
-            'total_score',
+            [
+                'attribute' => 'Last Name',
+                'value' => 'student.last_name',
+            ],
+            
+
             'score_percentage',
             'comments:ntext',
 

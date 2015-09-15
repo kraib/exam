@@ -147,14 +147,21 @@ class TestController extends Controller
         $result->total_score = $total_score;
         if ($total_test_marks != 0)
         {
-            $result->score_percentage = ($total_score/$total_test_marks)*100;
+            $result->score_percentage = (int)(($total_score/$total_test_marks)*100);
         }
         else
         {
             $result->score_percentage = 0;
         }
         $result->duration_used = 0;
-        $result->save();
+
+        if($result->save()){
+
+        }
+        else{
+            print_r($result->errors);
+            exit(0);
+        }
 
 
 

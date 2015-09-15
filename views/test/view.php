@@ -12,7 +12,7 @@ $this->registerJsFile('@web/js/test.js', ['depends' => [\yii\web\JqueryAsset::cl
 
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['examiner-home']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

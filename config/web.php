@@ -4,6 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name'=>'Exam Portal',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
 
@@ -56,6 +57,7 @@ $config = [
         'allowActions' => [
             'site/*',
             'admin/*',
+
 
             // The actions listed here will be allowed to everyone including guests.
             // So, 'admin/*' should not appear here in the production, of course.
