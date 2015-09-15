@@ -11,6 +11,17 @@ $('#test-qns').on('click', '.keyword-delete', function(event){
     return false;
 });
 
+$('#test-qns').on('click', '.question-delete', function(event){
+
+    var result = confirm("Are you sure you want to delete?");
+    if (result) {
+        var url = $(this).attr("href");
+        $.post( url, { id:$(this).data('id') } );
+    }
+
+    return false;
+});
+
 
 $('body').on('beforeSubmit', 'form#question-create', function () {
     var form = $(this);

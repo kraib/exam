@@ -26,7 +26,7 @@ foreach ($test_questions as $qn ) {
         <h4 class="pull-right"></h4>
     </div>
     <div class="col-md-11">
-        <h4><?php echo $qn->question;  ?></h4>
+        <h4><?php echo $qn->question;  ?><?=Html::a($delete_icon ,[ 'question/delete', 'id'=>$qn->id,'test'=>$model->id],['class'=>'question-delete','data-id'=>$qn->id])  ?></h4>
         <div class="row">
             <div class="col-md-1"></div>
             <?php

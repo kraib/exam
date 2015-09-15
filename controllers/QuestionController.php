@@ -94,6 +94,7 @@ class QuestionController extends Controller
             ]);
         }
     }
+    //Polynomials
 
     /**
      * Deletes an existing Question model.
@@ -101,11 +102,11 @@ class QuestionController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id,$test)
     {
         $this->findModel($id)->delete();
+        return $this->redirect(['test/view','id'=>$test]);
 
-        return $this->redirect(['index']);
     }
 
     /**
