@@ -8,14 +8,16 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Result */
 
+if($test)
 $this->title = "Test: ".$test->name;
 
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="result-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <h2><?= Html::encode(Yii::$app->user->identity->username) ?></h2>
+    <h2><?= Html::encode($student->username) ?></h2>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -65,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         $qn_keywords = new \app\models\QuestionKeywords();
                         $keywords = $qn_keywords->find()->where(['question_id'=> $qn->id])->all();
-                        $answer = StudentAnswer::find()->where(['question_id'=> $qn->id, 'student_id' => Yii::$app->user->id])->one();
+                        $answer = StudentAnswer::find()->where(['question_id'=> $qn->id, 'student_id' => $student->id])->one();
 
                         ?>
                         <?php foreach ( $keywords as $keyword )

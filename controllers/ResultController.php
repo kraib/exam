@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Question;
 use app\models\Test;
+use app\models\User;
 use Yii;
 use app\models\Result;
 use app\models\ResultSearch;
@@ -64,6 +65,19 @@ class ResultController extends Controller
             'model' => Result::findOne(['test_id'=> $test, 'student_id' => Yii::$app->user->id]),
             'test' => Test::findOne($test),
             'test_questions'=> $test_questions ,
+        ]);
+    }
+
+    public function actionExaminerView($test, $student)
+    {
+        $student_model = User::findOne(['id' => $student]);
+        $test_questions =  Question::find()->where(['test_id' =>$test])->all();
+        return $this->render('examiner-view', [
+            'model' => Result::findOne(['test_id'=> $test, 'student_id' => $student]),
+            'test' => Test::findOne($test),
+            'test_questions'=> $test_questions ,
+            'student' => $student_model,
+
         ]);
     }
 

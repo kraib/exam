@@ -28,7 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Last Name',
                 'value' => 'student.last_name',
             ],
-            
+            [
+                'label'=>'View Results',
+                'format'=>'raw',
+                'value' => function ($data) {
+                    return  Html::a('View Results', ['result/examiner-view','student'=>$data->student_id,'test' => $data->test_id], ['class' => 'btn btn-success']);
+                },
+
+            ],
 
             'score_percentage',
             'comments:ntext',
