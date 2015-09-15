@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Question;
 use Yii;
 use app\models\QuestionKeywords;
 use app\models\QuestionKeywordsSearch;
@@ -120,11 +121,13 @@ class QuestionKeywordsController extends Controller
     public function actionKey($id)
     {
         $model = new QuestionKeywords();
+        $question = Question::findOne($id);
+        $qn_keywords = $model->find()->where(['question_id'=> $id])->all();
 
-        //pass question id to Question keywords view
-        $this->view->params['question_id'] = $id;
         return $this->renderAjax('ajaxAdd',[
             'model' => $model,
+            'question' => $question,
+            'keywords' => $qn_keywords,
         ]);
 
     }

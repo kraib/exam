@@ -6,14 +6,13 @@ use app\models\Question;
 $this->registerJsFile('@web/js/keyword.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
 <?php
-$question_id = $this->params['question_id'];
+
 
 ?>
 <div class="row">
     <div class="col-md-5 question-section">
         <?php
-        $question = new Question();
-        $question = $question->findOne($question_id);
+
 ?>
 
         <h4>
@@ -28,7 +27,14 @@ $question_id = $this->params['question_id'];
                 <div class="col-md-11">
                     <h4>Keywords</h4>
                     <ol class="keywords-list">
+                        <?php
+                            if($keywords){
+                                foreach($keywords as $keyword){
+                                    echo '<li>'.$keyword->keyword .'-'. $keyword->marks. 'Marks </li>';
+                                }
 
+                            }
+                        ?>
                     </ol>
                 </div>
             </div>
@@ -45,9 +51,9 @@ $question_id = $this->params['question_id'];
            <div class="col-md-11">
 
                <?php $form =  ActiveForm::begin(
-                   ['action'=> Url::to(['question-keywords/create', 'question' => $question_id ]) , 'id'=>'question-key-create']
+                   ['action'=> Url::to(['question-keywords/create', 'question' => $question->id ]) , 'id'=>'question-key-create']
                ); ?>
-               <?= $form->field($model, 'question_id')->hiddenInput(['value'=> $question_id])->label(false) ?>
+               <?= $form->field($model, 'question_id')->hiddenInput(['value'=> $question->id])->label(false) ?>
 
                <?= $form->field($model, 'keyword')->textInput(['maxlength' => true ] ) ?>
 

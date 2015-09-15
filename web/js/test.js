@@ -11,6 +11,14 @@ $('#test-qns').on('click', '.keyword-delete', function(event){
     return false;
 });
 
+$('#test-qns').on('click', '.question-update', function(event){
+
+    getKeywordView($(this).data('id'));
+
+
+    return false;
+});
+
 $('#test-qns').on('click', '.question-delete', function(event){
 
     var result = confirm("Are you sure you want to delete?");
