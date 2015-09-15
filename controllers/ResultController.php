@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Question;
 use app\models\Test;
 use Yii;
 use app\models\Result;
@@ -57,9 +58,12 @@ class ResultController extends Controller
 
     public function actionStudentView($test)
     {
+
+        $test_questions =  Question::find()->where(['test_id' =>$test])->all();
         return $this->render('student-view', [
             'model' => Result::findOne(['test_id'=> $test, 'student_id' => Yii::$app->user->id]),
             'test' => Test::findOne($test),
+            'test_questions'=> $test_questions ,
         ]);
     }
 

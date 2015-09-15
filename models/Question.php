@@ -44,4 +44,18 @@ class Question extends \yii\db\ActiveRecord
             'question' => 'Question',
         ];
     }
+
+    public static function grade_question($question_keywords, $student_answer)
+    {
+
+        $score = 0;
+        foreach($question_keywords as $keyw => $mark){
+
+            if(preg_match("/(".$keyw.")/i", $student_answer, $match)){
+                $score+=$mark;
+            }
+
+        }
+        return $score;
+    }
 }
