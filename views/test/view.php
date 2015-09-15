@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
-
+$this->registerJsFile('@web/js/test.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 /* @var $this yii\web\View */
 /* @var $model app\models\Test */
 
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 Modal::begin([
     'id' => 'modal_question',
-    'header' => '<h4>Add Question</h4>',
+    'header' => '<h4 id="md-title">Add Question</h4>',
     'options'=> ['class'=>'']
 ]);?>
 <div class="response">
@@ -100,6 +100,20 @@ Modal::begin([
     <?= Html::submitButton('Create', ['class' => 'btn btn-success']); ?>
 </div>
     <?php ActiveForm::end() ?>
+
+<?php  Modal::end();
+
+
+?>
+
+<?php
+
+Modal::begin([
+    'id' => 'modal_keywords',
+    'header' => '<h4 id="md-title">Add Keywords</h4>',
+    'options'=> ['class'=>'']
+]);?>
+
 
 <?php  Modal::end();
 

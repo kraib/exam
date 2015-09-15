@@ -1,4 +1,7 @@
 <?php
+
+
+
 use yii\helpers\Html;
 
 $edit_icon = '<span class="glyphicon glyphicon-pencil"></span>';
@@ -14,6 +17,10 @@ foreach ($test_questions as $qn ) {
 
 
 ?>
+<script>
+
+
+</script>
 <div class="row">
     <div class="col-md-1">
         <h4 class="pull-right"></h4>

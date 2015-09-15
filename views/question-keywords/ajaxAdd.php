@@ -3,12 +3,13 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\models\Question;
+$this->registerJsFile('@web/js/keyword.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
 <?php
 $question_id = $this->params['question_id'];
 
 ?>
-<div class="row key-container">
+<div class="row">
     <div class="col-md-5 question-section">
         <?php
         $question = new Question();
@@ -26,7 +27,9 @@ $question_id = $this->params['question_id'];
                 </div>
                 <div class="col-md-11">
                     <h4>Keywords</h4>
-                    <ul class="keyword-list"></ul>
+                    <ol class="keywords-list">
+
+                    </ol>
                 </div>
             </div>
 
@@ -40,11 +43,11 @@ $question_id = $this->params['question_id'];
         </h4>
        <div class="row ">
            <div class="col-md-11">
+
                <?php $form =  ActiveForm::begin(
                    ['action'=> Url::to(['question-keywords/create', 'question' => $question_id ]) , 'id'=>'question-key-create']
                ); ?>
-
-               <?= $form->field($model, 'question_id')->textInput(['value'=> $question_id]) ?>
+               <?= $form->field($model, 'question_id')->hiddenInput(['value'=> $question_id])->label(false) ?>
 
                <?= $form->field($model, 'keyword')->textInput(['maxlength' => true ] ) ?>
 
